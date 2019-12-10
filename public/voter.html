@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <title>Store</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="voting" style="margin-left: 5em;">
+        <h1> Shopping Interface </h1>
+        <h1>Current Products</h1>
+        <div v-for="product in products">
+            <input type="checkbox" v-model="product.selected"> {{product.Name}} - price {{product.price}} <img :src="product.url" />
+        </div>
+        <button v-on:click="dovote()"> Submit Purchase </button>
+
+        <h1>Shopping Cart</h1>
+        <div v-for="product in ballot">
+            {{product.Name}} - price {{product.price}} <img :src="product.url" />
+        </div>
+    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+    <script src="javascripts/app.js"></script>
+
+</body>
+
+</html>
