@@ -1,26 +1,30 @@
 <html>
 
 <head>
-  <title>Store Admin</title>
+  <title>Stock Broker Administration</title>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 
 <body>
   <div id="voting" style="margin-left: 5em;">
-    <h1> Store Management Interface </h1>
+    <h1> Stock Broker Administration </h1><br><br><br>
     <form v-on:submit="addProduct">
-      Product Name <input type="text" v-model="product"><br><br>
-      Price <input type="text"  v-model="price"><br><br>
-      Picture URL <input type="text"  v-model="url">
-      <button type="submit">Add Product</button><br><br>
+      Stock Name <input type="text" v-model="product"><br><br> Current Stock Price <input type="text" v-model="price"><br><br> Company Logo URL <input type="text" v-model="url">
+      <button type="submit">Add Stock to Portfolio</button><br><br>
     </form>
-
-    <h1>Current Products</h1>
+    <br><br><br>
+    <h1>Current Stocks in Portfolio: </h1>
     <div v-for="product in products">
-      <span class="glyphicon glyphicon-remove" 
-        v-on:click="deleteproduct(product)"></span> 
-        {{product.Name}} - price {{product.price}} - ordered {{product.votes}}<img :src="product.url" />
+      <span class="glyphicon glyphicon-remove" v-on:click="deleteproduct(product)"></span>
+      <img :src="product.url" width="75" height="75"/> <input type="checkbox" v-model="product.selected"> {{product.Name}} - price {{product.price}} - Sold {{product.votes}}<br>
     </div>
+  </div>
+  <br><br><br><br>
+  <div class="footer">
+    <a href="voter.html">Trading Site</a><br>
+    <a class="footerText" href="https://github.com/nathantannerallen/finalCreativeProj" target="_blank"> Click here for Nathan's the github repository </a>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>

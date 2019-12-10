@@ -6,3 +6,24 @@ body {
 a {
   color: #00B7FF;
 }
+
+p {
+  
+}
+
+h1 {
+  color:#0066ff;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width:100%;
+  color: white;
+  background-color: grey;
+  text-align: center;
+  font-weight:bold;
+  padding:1%;
+}
+

@@ -1,29 +1,78 @@
 <html>
 
 <head>
-    <title>Store</title>
+    <title>Stock Market</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 
 <body>
     <div id="voting" style="margin-left: 5em;">
-        <h1> Shopping Interface </h1>
-        <h1>Current Products</h1>
-        <div v-for="product in products">
-            <input type="checkbox" v-model="product.selected"> {{product.Name}} - price {{product.price}} <img :src="product.url" />
-        </div>
-        <button v-on:click="dovote()"> Submit Purchase </button>
+        <div class="topHeading">
 
-        <h1>Shopping Cart</h1>
+            <h1>Welcome, Stock Trader </h1><br><br>
+        </div>
+        <p>
+            <b>Welcome to our portrolio of stocks.</b> <br> <br> Our brokerage offers the stocks listed below in our portfolio.<br> Check the boxes of the stocks you would like to invest in, <br> and we will add the correct ratio of the stock in order
+            to minimize risk <br> and maximize return.
+        </p>
+        <br><br><br>
+        <h3>Research Stocks Here:</h3><br>
+        <p>
+            Before making your stock purchase decisions, you can conduct some <br> brief research here. Type in a stock name for some brief information <br> about the company's stock price and income statement.
+        </p>
+        <p>
+            Note: Only search for ticker-symbols, not the company names themselves.
+        </p>
+        <div class="inputForm">
+            <form v-on:submit.prevent="grabStockInfo">
+                <label><b>Enter a stock ticker symbol:</b><br><i>Ex: "AMZN" = Amazon; "F" = Ford; "GOOG" = Google</i></label><br><br>
+                <input id="stockInput" v-model='searchText' type="text"></input><br/><br>
+                <input id="stockSubmit" type="submit" value="Submit"></input>
+            </form>
+        </div>
+        <div class="finInfo" id="stockResults" v-if="done">
+            <h4>Current price for {{searchText}}</h4>
+            <h4>{{currentTicker.price}}</h4>
+        </div>
+
+        <br><br>
+
+        <div class="finInfo" id="forecastResults" v-if="done">
+            <ul>
+                <li><b>Revenue:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.revenue}}</li>
+                <li><b>Revenue Growth:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.revenueGrowth}}</li>
+                <li><b>COGS:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.COGS}}</li>
+                <li><b>Net Income:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.NetIncome}}</li>
+                <li><b>Net Profit Margin:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.NetProfitMargin}}</li>
+                <li><b>EPS:</b> &emsp; <br>&emsp;&emsp;{{currentTicker.EPS}}</li>
+            </ul>
+        </div>
+        <br><br><br><br>
+        <h3>Current Stocks Available to Purchase</h3>
+        <p>Talk to admin if you would like an additional stock to be added. <i>(Click admin to add more stocks)</i></p>
+        <br>
+        <div v-for="product in products">
+            <img :src="product.url" width="75" height="75" /> <input type="checkbox" v-model="product.selected"> <b>{{product.Name}}</b> (Purchased by other clients {{product.votes}} times)
+        </div>
+        <br><br><br>
+        <button v-on:click="dovote()"> Purchase Stocks </button>
+        <br><br><br><br><br>
+        <h3>Your Personalized Portfolio</h3>
         <div v-for="product in ballot">
-            {{product.Name}} - price {{product.price}} <img :src="product.url" />
+            <img :src="product.url" width="75" height="75" /> {{product.Name}}
         </div>
     </div>
+    </div>
+    <br><br><br><br>
+    <div class="footer">
+        <a href="admin.html">Admin</a><br>
+        <a class="footerText" href="https://github.com/nathantannerallen/finalCreativeProj" target="_blank"> Click here for Nathan's the github repository </a>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
     <script src="javascripts/app.js"></script>
-
 </body>
 
 </html>
